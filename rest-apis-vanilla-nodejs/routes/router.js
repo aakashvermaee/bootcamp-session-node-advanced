@@ -1,5 +1,5 @@
 const { baseURI } = require("../config").config;
-const controllers = require("../controller");
+const { Users } = require("../controller");
 
 const routes = {
   users: `${baseURI}/users`
@@ -18,18 +18,20 @@ module.exports = (req, res) => {
 };
 
 function users(req, res, reqMethod) {
+  const users = new Users();
+
   switch (reqMethod) {
     case "GET":
-      controllers.users.getUsers(req, res);
+      users.getUsers(req, res);
       break;
     case "POST":
-      controllers.users.createUser(req, res);
+      users.createUser(req, res);
       break;
     case "PATCH":
-      controllers.users.updateUser(req, res);
+      users.updateUser(req, res);
       break;
     case "DELETE":
-      controllers.users.deleteUser(req, res);
+      users.deleteUser(req, res);
       break;
   }
 }
